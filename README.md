@@ -12,7 +12,7 @@ This project demonstrates an example of loading a DLL into a process without usi
 
 4. We then unlink our module from the PEB's LDR_DATA_TABLE, effectively removing it from the list of loaded modules.  
 
-5. Finally, we load the real msimg32.dll from its original path, which will now be loaded without any interference from our module. Exports are forwarded to the real msimg32.dll, so the target process can use them as if it was using the original   module, and everything appears normal.
+5. Finally, we load the real msimg32.dll from its original path by using `LoadLibraryW`. Exports are forwarded to the real msimg32.dll, so the target process can use them as if it was using the original   module, and everything appears normal.
 
 6. The PE headers of our module are wiped to help prevent further analysis or detection.
 
