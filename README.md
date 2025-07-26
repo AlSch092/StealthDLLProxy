@@ -22,3 +22,6 @@ This project demonstrates an example of loading a DLL into a process without usi
 - Deletes the PE header of the module
 
 What's left after applying these techniques is a group of sections unassociated with any named loaded module, appearing similar to a manually-mapped module which has had its PE headers removed. Unlike injection via manual mapping, no process handles are required for module loading, which means protected processes that block handle creation can still be loaded into, since the target process naturally loads the module. With that being said, it does not guarantee a specific process will or won't detect our module. The code can be taken further to encrypt & decrypt memory just-in-time using guard pages, or hidden with `PAGE_NOACCESS` page protections to avoid detection.  
+
+## Example
+In `DLLMain.cpp`, the example proxies 'msimg32.dll' which is normally found in the System32 folder. The target process tested on was Cheat Engine, since it loads this module when the process starts. If everything works fine, a message box should appear saying "Proxy injection was successful!".  
